@@ -1,23 +1,48 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <router-link to="/home" tag="button" replace>首页</router-link>
+    <router-link to="/about" tag="button" replace>关于</router-link>
+    <router-view></router-view>
+
+    <button @click="homeClick">Home</button>
+    <button @click="aboutClick">About</button>
+    <button @click="userClick">User</button>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      userId: 'zhan'
+    }
+  },
+  methods: {
+    homeClick() {                              
+      // this.$router.push('/home')
+      this.$router.replace('/home')           //通过代码方式进行路由跳转
+      console.log('homeclick')
+    },
+    aboutClick() {
+      // this.$router.push('/about')
+      this.$router.replace('/about')
+      console.log('aboutclick')
+    },
+    userClick() {
+      // this.$router.push('/user' + userId)
+      this.$router.replace('/user/'+this.userId)
+      console.log('userclick')
+    }
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+.router-link-active{
+  color: cadetblue;
 }
+
 </style>

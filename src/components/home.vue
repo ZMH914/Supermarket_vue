@@ -10,8 +10,21 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  data() {
+    return {
+      path: '/home/news'
+  }
+  },
+  activated() {                      //跳转到组件时调用，启用keepalive时才有效，deactivted同理，离开路由时调用
+    this.$router.replace(this.path)
+  },
+  beforeRouteLeave (to,from,next) {   //组件内路由守卫，离开路由前保存路由路径
+    this.path = this.$route.path
+    next()
+  }
 }
+  
 </script>
 
 <style>

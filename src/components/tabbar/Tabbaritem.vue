@@ -6,7 +6,7 @@
       <div v-else>
         <slot name="item-icon-active"></slot>
       </div>
-      <div :class="{activetext: isActive}"> 
+      <div :style="activeStyle">          <!--属性绑定-->
         <slot name="item-text"></slot>
       </div>
     </div>
@@ -17,15 +17,26 @@ export default {
   name: 'Tabbaritem',
   data() {
     return {
-      isActive: true              //点击标志
+      // isActive: true              //点击标志
     }
   },
   props: {                        //父传子
-    path: String
+    path: String,
+    activeColor: {
+      type: String,
+      default: 'red'
+    }
+  },
+  computed: {
+    isActive() {                     //点击标志,动态传入当前活跃路由路径
+      return this.$route.path.indexOf(this.path) != -1
+    },
+    activeStyle() {                  //文字变色标志
+      return this.isActive ? {color: this.activeColor} : {}
+    }
   },
   methods: {
     itemClick() {
-      console.log(this.path);
       this.$router.replace(this.path)
     }
   }

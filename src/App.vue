@@ -2,22 +2,22 @@
   <div id="app">
     <router-view></router-view>            <!--路由出口-->
     <tabbar>
-      <tabbaritem path="/home">
+      <tabbaritem path="/home" activeColor="blue">
         <img slot="item-icon-active" src="./assets/img/tabbar/主页 (1).svg">
         <img slot="item-icon" src="./assets/img/tabbar/主页.svg" alt="主页">
         <div slot="item-text">主页</div>
       </tabbaritem>
-      <tabbaritem path="/catgory">
+      <tabbaritem path="/catgory" activeColor="blue">
         <img slot="item-icon-active" src="./assets/img/tabbar/分类 (1).svg">
         <img slot="item-icon" src="./assets/img/tabbar/分类.svg" alt="分类">
         <div slot="item-text">分类</div>
       </tabbaritem>
-      <tabbaritem path="/cart">
+      <tabbaritem path="/cart" activeColor="blue">
         <img slot="item-icon-active" src="./assets/img/tabbar/购物车 (1).svg">
         <img slot="item-icon" src="./assets/img/tabbar/购物车.svg" alt="购物车">
         <div slot="item-text">购物车</div>
       </tabbaritem>
-      <tabbaritem path="/profile">
+      <tabbaritem path="/profile" activeColor="blue">
         <img slot="item-icon-active" src="./assets/img/tabbar/我的 (1).svg">
         <img slot="item-icon" src="./assets/img/tabbar/我的.svg" alt="我的">
         <div slot="item-text">我的</div>

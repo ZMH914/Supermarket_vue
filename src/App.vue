@@ -1,23 +1,39 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <tabbar>
+      <tabbaritem>
+        <img slot="item-icon" src="./assets/img/tabbar/主页.svg" alt="主页">
+        <div slot="item-text">主页</div>
+      </tabbaritem>
+      <tabbaritem>
+        <img slot="item-icon" src="./assets/img/tabbar/分类.svg" alt="主页">
+        <div slot="item-text">分类</div>
+      </tabbaritem>
+      <tabbaritem>
+        <img slot="item-icon" src="./assets/img/tabbar/购物车.svg" alt="主页">
+        <div slot="item-text">购物车</div>
+      </tabbaritem>
+      <tabbaritem>
+        <img slot="item-icon" src="./assets/img/tabbar/我的.svg" alt="主页">
+        <div slot="item-text">我的</div>
+      </tabbaritem>
+    </tabbar>
   </div>
 </template>
 
 <script>
+import Tabbar from './components/tabbar/Tabbar'
+import Tabbaritem from './components/tabbar/Tabbaritem.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: { 
+    Tabbar,
+    Tabbaritem 
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "./assets/css/base.css";
 </style>

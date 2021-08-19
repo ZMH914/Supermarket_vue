@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-bar-item">
+    <div class="tab-bar-item" @click="itemClick">
       <div v-if="!isActive">
         <slot name="item-icon"></slot>
       </div>
@@ -17,7 +17,16 @@ export default {
   name: 'Tabbaritem',
   data() {
     return {
-      isActive: true
+      isActive: true              //点击标志
+    }
+  },
+  props: {                        //父传子
+    path: String
+  },
+  methods: {
+    itemClick() {
+      console.log(this.path);
+      this.$router.replace(this.path)
     }
   }
 }

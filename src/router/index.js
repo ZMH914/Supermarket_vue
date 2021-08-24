@@ -1,29 +1,59 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
+
+const Home = () => import("../views/home/Home.vue")
+const Cart = () => import("../views/cart/Cart.vue")
+const Catgory = () => import("../views/catgory/Catgory.vue")
+const Profile = () => import("../views/profile/Profile.vue")
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    meta: {
+      title: '首页'
+    },
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/catgory',
+    meta: {
+      title: '分类'
+    },
+    component: Catgory
+  },
+  {
+    path: '/cart',
+    meta: {
+      title: '购物车'
+    },
+    component: Cart
+  },
+  {
+    path: '/profile',
+    meta: {
+      title: '我的'
+    },
+    component: Profile
   }
 ]
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+const router = new Router({
+  routes,
+  mode: 'history'
 })
+
+//全局守卫，路由跳转时改变参数
+//router必须实例化才可调用函数
+router.beforeEach((to,from,next) =>{
+  //从from跳转到to
+  document.title = to.matched[0].meta.title
+  next()
+  })
 
 export default router

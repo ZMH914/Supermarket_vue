@@ -6,7 +6,7 @@
     </nav-bar>
 
     <!-- 轮播图 -->
-    <home-swiper :banners="banners"></home-swiper>
+    <home-swiper :banners="banners"/>
   </div>
 </template>
 

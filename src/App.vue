@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>            <!--路由出口-->
-    <MainTabbar></MainTabbar>              <!--对tabbar和tabbaritem再进行一层封装，总的tabbar组件入口-->
+    <MainTabbar/>              <!--对tabbar和tabbaritem再进行一层封装，总的tabbar组件入口-->
   </div>
 </template>
 

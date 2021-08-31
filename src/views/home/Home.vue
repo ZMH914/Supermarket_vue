@@ -82,7 +82,12 @@ import HomeSwiper from '@/views/home/childComps/HomeSwiper'
 import HomeRecommend from './childComps/HomeRecommend.vue'
 import FeatureView from './childComps/FeatureView.vue'
 
-import {getHomeMultidata , getHomeGoods} from '@/network/home.js'
+import {getHomeMultidata, 
+        getHomeGoods,
+        getHomeRecommend,
+
+        
+        } from '@/network/home.js'
 
 
 export default {
@@ -108,15 +113,22 @@ export default {
   created() {
     //请求数据
     this.getHomeMultidata()
+    //请求首页推荐数据
+    this.getHomeRecommend()
     //请求首页货物数据
     this.getHomeGoods()
   },
   methods: {
-    //请求数据
+    //请求轮播图数据
     getHomeMultidata() {
       getHomeMultidata().then(res => {
-        this.banners = res.data.data.banner.list
-        this.recommends = res.data.data.recommend.list
+        this.banners = res.data.data
+      })
+    },
+    //请求推荐数据
+    getHomeRecommend() {
+      getHomeRecommend().then(res => {
+        console.log(this.recommends = res.data.data) 
       })
     },
     getHomeGoods() {

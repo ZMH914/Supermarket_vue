@@ -13,8 +13,12 @@ export function getHomeRecommend() {
     })
 }
 
-export function getHomeGoods() {
+export function getHomeGoods(type , page) {
     return request({
         url: '/mallGoods/getGoodData',
+        params: {
+            type,
+            page
+        }
     })
 }

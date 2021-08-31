@@ -104,9 +104,9 @@ export default {
       banners: [],              //轮播图数据
       recommends: [],           //推荐数据
       goods: {                  //首页货物数据
-        'pop': {page: 0, list: []},
-        'news': {page: 0, list: []},
-        'sell': {page: 0, list: []}
+        '流行': {page: 0, list: []},
+        '新款': {page: 0, list: []},
+        '精选': {page: 0, list: []}
       }
     }
   },
@@ -116,7 +116,7 @@ export default {
     //请求首页推荐数据
     this.getHomeRecommend()
     //请求首页货物数据
-    this.getHomeGoods()
+    this.getHomeGoods('流行')
   },
   methods: {
     //请求轮播图数据
@@ -128,17 +128,17 @@ export default {
     //请求推荐数据
     getHomeRecommend() {
       getHomeRecommend().then(res => {
-        console.log(this.recommends = res.data.data) 
+        this.recommends = res.data.data
       })
     },
-    getHomeGoods() {
+    getHomeGoods(type) {
       // const page = this.goods[type].page + 1
       // getHomeGoods(type, page).then(res => {
       //   this.goods[type].list.push(...res.data.list)
-      //   // this.goods[type].page += 1
+      //   this.goods[type].page += 1
       // })
-      getHomeGoods().then(res => {
-        console.log(res)
+      getHomeGoods(type , 1).then(res => {
+        console.log(res.data.data.records)
       })
     }
   }

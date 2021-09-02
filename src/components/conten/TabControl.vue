@@ -37,6 +37,8 @@ export default {
        text-align: center;
        position: sticky;
        top: 44px;
+       z-index: 9;
+       background-color: #fff;
    }
 
    .tab-control-item {

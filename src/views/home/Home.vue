@@ -18,6 +18,9 @@
     <!-- 分类导航栏 -->
     <tab-control :titles="['流行','新款','精选']"/>
 
+    <!-- 商品展示 -->
+    <goods-list :goods="goods['流行'].list"/>
+
     <ul>
       <li>列表1</li>
       <li>列表2</li>
@@ -77,6 +80,7 @@
 <script>
 import NavBar from '@/components/common/navbar/NavBar.vue'
 import TabControl from '../../components/conten/TabControl.vue'
+import GoodsList from '@/components/conten/goods/GoodsList.vue'
 
 import HomeSwiper from '@/views/home/childComps/HomeSwiper'
 import HomeRecommend from './childComps/HomeRecommend.vue'
@@ -85,8 +89,6 @@ import FeatureView from './childComps/FeatureView.vue'
 import {getHomeMultidata, 
         getHomeGoods,
         getHomeRecommend,
-
-        
         } from '@/network/home.js'
 
 
@@ -97,7 +99,8 @@ export default {
     HomeSwiper,
     HomeRecommend,
     FeatureView,
-    TabControl
+    TabControl,
+    GoodsList
   },
      data() {
     return {
@@ -132,13 +135,11 @@ export default {
       })
     },
     getHomeGoods(type) {
-      // const page = this.goods[type].page + 1
-      // getHomeGoods(type, page).then(res => {
-      //   this.goods[type].list.push(...res.data.list)
-      //   this.goods[type].page += 1
-      // })
-      getHomeGoods(type , 1).then(res => {
-        console.log(res.data.data.records)
+      const page = this.goods[type].page + 1
+      getHomeGoods(type, page).then(res => {
+        this.goods[type].list.push(...res.data.data.records)
+        console.log(this.goods[type])
+        this.goods[type].page += 1
       })
     }
   }

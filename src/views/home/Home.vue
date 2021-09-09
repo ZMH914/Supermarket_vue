@@ -16,10 +16,10 @@
     <feature-view/>
 
     <!-- 分类导航栏 -->
-    <tab-control :titles="['流行','新款','精选']"/>
+    <tab-control :titles="['流行','新款','精选']" @tabClick="tabClick"/>
 
     <!-- 商品展示 -->
-    <goods-list :goods="goods['流行'].list"/>
+    <goods-list :goods="showGoods"/>
 
     <ul>
       <li>列表1</li>
@@ -110,9 +110,16 @@ export default {
         '流行': {page: 0, list: []},
         '新款': {page: 0, list: []},
         '精选': {page: 0, list: []}
-      }
+      },
+      currentType: '流行'
     }
   },
+  computed: {
+    showGoods() {
+      return this.goods[this.currentType].list
+    }
+  }
+  ,
   created() {
     //请求数据
     this.getHomeMultidata()
@@ -120,8 +127,25 @@ export default {
     this.getHomeRecommend()
     //请求首页货物数据
     this.getHomeGoods('流行')
+    this.getHomeGoods('新款')
+    this.getHomeGoods('精选')
   },
   methods: {
+
+    tabClick(index) {
+      switch(index) {
+        case 0:
+          this.currentType = '流行'
+          break
+        case 1:
+          this.currentType = '新款'
+          break
+        case 2:
+          this.currentType = '精选'
+          break
+      }
+    },
+
     //请求轮播图数据
     getHomeMultidata() {
       getHomeMultidata().then(res => {
@@ -134,11 +158,11 @@ export default {
         this.recommends = res.data.data
       })
     },
+    //请求首页货物数据
     getHomeGoods(type) {
       const page = this.goods[type].page + 1
       getHomeGoods(type, page).then(res => {
         this.goods[type].list.push(...res.data.data.records)
-        console.log(this.goods[type])
         this.goods[type].page += 1
       })
     }

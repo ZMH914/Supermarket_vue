@@ -6,21 +6,22 @@
       <div slot="center">购物车</div>
     </nav-bar>
 
-    <!-- 轮播图 -->
-    <home-swiper :banners="banners"/>
+    <scroll class="content">
+      <!-- 轮播图 -->
+      <home-swiper :banners="banners"/>
 
-    <!-- 首页推荐 -->
-    <home-recommend :recommends="recommends"/>
+      <!-- 首页推荐 -->
+      <home-recommend :recommends="recommends"/>
 
-    <!-- 本周流行 -->
-    <feature-view/>
+      <!-- 本周流行 -->
+      <feature-view/>
 
-    <!-- 分类导航栏 -->
-    <tab-control :titles="['流行','新款','精选']" @tabClick="tabClick"/>
+      <!-- 分类导航栏 -->
+      <tab-control :titles="['流行','新款','精选']" @tabClick="tabClick"/>
 
-    <!-- 商品展示 -->
-    <goods-list :goods="showGoods"/>
-
+      <!-- 商品展示 -->
+      <goods-list :goods="showGoods"/>
+    </scroll>
     <ul>
       <li>列表1</li>
       <li>列表2</li>
@@ -81,6 +82,7 @@
 import NavBar from '@/components/common/navbar/NavBar.vue'
 import TabControl from '../../components/conten/TabControl.vue'
 import GoodsList from '@/components/conten/goods/GoodsList.vue'
+import Scroll from '@/components/common/scroll/Scroll.vue'
 
 import HomeSwiper from '@/views/home/childComps/HomeSwiper'
 import HomeRecommend from './childComps/HomeRecommend.vue'
@@ -100,7 +102,8 @@ export default {
     HomeRecommend,
     FeatureView,
     TabControl,
-    GoodsList
+    GoodsList,
+    Scroll
   },
      data() {
     return {
@@ -170,7 +173,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #home {
   padding-bottom: 49px;
   padding-top: 44px;
@@ -185,6 +188,10 @@ export default {
    right: 0px;
    top: 0px;
    z-index: 9;
+ }
+
+ .content {
+   
  }
 
 </style>
